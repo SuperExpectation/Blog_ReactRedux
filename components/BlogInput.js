@@ -7,7 +7,8 @@ class BlogInput extends Component {
 	    this.state = {
 	      text: this.props.text || '',
 	      id:this.props.id || '',
-	      pic:[]
+	      pic:[],
+	      picLoading:false,
 	    }
   	}
 /*
@@ -26,20 +27,16 @@ class BlogInput extends Component {
 		this.setState({ text: e.target.value })
 	}
 
-	handleBlur(e) {
-		if (!this.props.newTodo) {
-		  this.props.onSave(e.target.value)
-		}
-	}
-
 	handleSubmitClick(e) {    
 		const text = this.refs.blog_content.value;  
 		console.info("pic length: "+this.state.pic.length)
-		this.props.onSave(text,this.state.pic)
+		//this.props.onSave(text,this.state.pic)
+		this.props.onSave(text,this.state.pic,this.state.id,this.state.picLoading)
 		if (this.props.newTodo) {
 			this.setState({ 
 				text: '',
-				pic:[]
+				pic:[],
+				picLoading:false,
 			 })
 		}  
 	}
@@ -58,7 +55,8 @@ class BlogInput extends Component {
 				tmp_arr1.push(reader.result)	
 				tmp_arr1 = tmp_arr1.concat(this.state.pic)
 				this.setState({			      
-			      pic: tmp_arr1
+			      pic: tmp_arr1,
+			      picLoading:true,
 			    });	
 			};
 		}		
@@ -87,7 +85,9 @@ class BlogInput extends Component {
         	<input type="file" name="file" id={"updateFile"+this.state.id} className="inputfile" onChange={(e)=>this.handleImageChange(e)} />
 			<label htmlFor={"updateFile"+this.state.id} className="imgLabel btn6" >Image</label > 
         </div>
-
+        
+        	
+        
       </div>
     )
   }

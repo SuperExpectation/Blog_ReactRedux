@@ -2,9 +2,10 @@ import React, { PropTypes, Component } from 'react'
 import BlogInput from './BlogInput'
 
 class BlogPublisher extends Component {
-  handleSave(text,pic) {
+  handleSave(text,pic,id,picLoading) {
     if (text.length !== 0) {      
-      this.props.addBlog(text,pic);
+      this.props.addBlog(text,pic,id,picLoading);
+      //this.props.addBlogAsync(text,pic,id);
     }
   }
 
@@ -23,6 +24,7 @@ class BlogPublisher extends Component {
 
 BlogPublisher.propTypes = {
   addBlog: PropTypes.func.isRequired
+  //addBlogAsync: PropTypes.func.isRequired
 }
 
 export default BlogPublisher

@@ -11,7 +11,7 @@ class App extends Component {
     const { blogs, actions } = this.props    
     return (      
       <div className="Blog_main_center">        
-        <BlogPublisher addBlog={actions.addBlog} /> 
+        <BlogPublisher addBlog={actions.addBlogAsync} /> 
         <BlogMainSection blogs={blogs} actions={actions} />
         
       </div>

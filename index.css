@@ -112,10 +112,19 @@
   padding-top: 10px;
 }
 
-.BlogContent label{
+.BlogContent label {
   width:300px; 
   height:auto;  
   font-size: 14px;
+  line-height: 1.041666667;
+  font-family: Conduit,Helvetica,sans-serif;
+}
+
+.BlogCrtTime{
+  width:300px; 
+  height:auto; 
+  margin: 0; 
+  font-size: 12px;  
   line-height: 1.041666667;
   font-family: Conduit,Helvetica,sans-serif;
 }

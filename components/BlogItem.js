@@ -8,6 +8,7 @@ class BlogItem extends Component {
 		this.state = {
 		  editing: false,
 		  pic:"",
+		  picLoading:false,
 		}
 	}
 
@@ -31,9 +32,9 @@ class BlogItem extends Component {
 	
 
     render() {
-    	const { blog, delBlog } = this.props	
-    	console.info("blog pic length:" +blog.pic.length)
-    	
+    	const { blog, delBlog } = this.props	    	
+    	const isLoading = blog.picLoading
+    	console.info("33 picLoading is " + blog.picLoading);
 	    let element
 	    if (this.state.editing) {
 	      element = (
@@ -45,20 +46,29 @@ class BlogItem extends Component {
 	    } else {
 	      element = (
 	        <div className="BlogView">	  
-	          { (blog.pic.length !== 0  ) &&
-	          	    <div> 
-	          	    {
-	          	    	blog.pic.map(function(pic, i) {
-				            return <img src={pic} key={i}></img>;
-				          })
-	          	    }
-	          	    </div>
-	          	
+	          { 
+	          		(blog.picLoading  ) && 
+	          		<div>
+	          			<img src="/../image/spinner.gif"></img>;
+	          		</div> 
+	          		||
+	          		(blog.pic ) &&
+		          	    <div> 
+		          	    {
+		          	    	blog.pic.map(function(pic, i) {
+					            return <img src={pic} key={i}></img>;
+					          })
+		          	    }
+		          	    </div>
+		          	
               }  
               <div className="BlogContent">        			             
 		          <label onDoubleClick={this.handleDoubleClick.bind(this)}>
 		            {blog.text}
 		          </label>
+		          <div className="BlogCrtTime">		          
+		          	CreateTime:  { new Date(blog.createTime).toLocaleTimeString()}		          
+		          </div>
 	          </div>
 	          <div>
 			  <input type="button" className="delBtn btn3 pbtn1" value="Update"
